@@ -1,3 +1,6 @@
 certificado.crt    
 chave-privada.key
-
+nginx.crt
+nginx.key
+*.key
+*.crt
