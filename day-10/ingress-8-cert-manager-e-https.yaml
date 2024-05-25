@@ -4,8 +4,13 @@ metadata:
   name: giropops-senhas
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "letsencrypt-prod" #este eh o de producao
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - giropops.diogofiaminghi.com.br
+    secretName: giropops-diogofiaminghi-com-br-tls
   rules:
   - host: giropops.diogofiaminghi.com.br #usar aqui meu dominio valido apontando para o endereco LoadBalance
     http:
@@ -15,6 +20,5 @@ spec:
         backend:
           service:
             name: giropops-senhas
-            port: 
+            port:
               number: 5000
-             

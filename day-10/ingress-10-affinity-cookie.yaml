@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: giropops-senhas
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    #nginx.ingress.kubernetes.io/auth-type: "basic"
+    #nginx.ingress.kubernetes.io/auth-secret: "giropops-senhas-users"
+    #nginx.ingress.kubernetes.io/auth-realm: "Autenticacao Necessaria!"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod" #este eh o de producao
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "giropops-cookie"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - giropops.diogofiaminghi.com.br
+    secretName: giropops-diogofiaminghi-com-br-tls
+  rules:
+  - host: giropops.diogofiaminghi.com.br #usar aqui meu dominio valido apontando para o endereco LoadBalance
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: giropops-senhas
+            port:
+              number: 5000
