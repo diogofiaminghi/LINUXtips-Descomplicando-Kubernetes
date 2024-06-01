@@ -4,3 +4,4 @@ nginx.crt
 nginx.key
 *.key
 *.crt
+*.csr

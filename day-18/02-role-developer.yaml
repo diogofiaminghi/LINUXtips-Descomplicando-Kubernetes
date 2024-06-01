@@ -1,0 +1,10 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role #valerá para um namespace específico; NAO VALE para o cluster inteiro
+metadata:
+  name: developer
+  namespace: dev
+rules:
+- apiGroups: [""] # indicates the core api group
+  resources: ["pods"]
+  verbs: ["list", "create", "get", "delete"]
+

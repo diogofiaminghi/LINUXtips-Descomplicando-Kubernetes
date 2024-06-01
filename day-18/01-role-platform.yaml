@@ -1,0 +1,9 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole #valerá para o cluster inteiro
+metadata:
+  name: platform
+rules:
+- apiGroups: ["", "apps"] # indicates the core api group and pods
+  resources: ["pods", "deployment"]
+  verbs: ["list", "create", "get"]
+
