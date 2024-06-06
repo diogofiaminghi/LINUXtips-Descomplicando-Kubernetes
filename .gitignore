@@ -2,6 +2,7 @@ certificado.crt
 chave-privada.key
 nginx.crt
 nginx.key
+giropops-senhas-labs
 *.key
 *.crt
 *.csr
